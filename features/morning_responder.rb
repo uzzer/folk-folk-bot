@@ -1,4 +1,4 @@
-class MorningReponder
+class MorningResponder
   class << self
     def responds_to?(msg)
       return true if msg == 'Good morning!'
