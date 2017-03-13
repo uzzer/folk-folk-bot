@@ -1,6 +1,7 @@
 require 'slack-ruby-client'
 require 'logging'
 require './features/morning_responder'
+require './features/lunch_responder'
 
 logger = Logging.logger(STDOUT)
 logger.level = :debug
@@ -35,6 +36,11 @@ client.on :message do |data|
   if MorningResponder.responds_to?(data['text'])
     client.message channel: data['channel'], text: MorningResponder.random_morning_greeting
     logger.debug('Morning Responder responded something')
+  end
+
+  if LunchResponder.responds_to?(data)
+    client.message channel: data['channel'], text: LunchResponder.random_lunch_greeting
+    logger.debug('Lunch Responder responded something')
   end
 
   case data['text']
