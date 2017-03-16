@@ -1,6 +1,7 @@
 class LunchResponder
   class << self
     def responds_to?(data)
+      return true if data['text'] == '_lunch_'
       data['text'] == 'lunch' && data['subtype'] == 'me_message'
     end
 
